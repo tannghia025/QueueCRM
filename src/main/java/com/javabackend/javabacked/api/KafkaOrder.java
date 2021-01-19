@@ -17,10 +17,10 @@ public class KafkaOrder {
 
 	
 	@GetMapping(value = "/api/pushOrderIntoKafka")
-	public String sendMessage(@RequestParam OrderInforBO orderInforBO) {
+	public String sendMessage(@RequestParam String orderInforBO) {
 		
-		
-		sender.send("DMX", "message");
+		//alo
+		sender.send("DMX", orderInforBO);
 		return "Sent to kafka ";
 	}
 	
