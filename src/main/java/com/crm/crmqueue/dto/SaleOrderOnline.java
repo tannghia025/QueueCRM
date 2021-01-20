@@ -30,7 +30,7 @@ public class SaleOrderOnline {
 	public int PAYMENTONLINESTATUSID;
 	public String STUDENTID;
 	public String SCHOOLNAME;
-	public List<ProductWeb> _lstProductWeb = new ArrayList<>();
+	public List<ProductWeb> lstProductWeb = new ArrayList<>();
 	public List<CCUSTOMERGIFT> lstProductGift;
 	public int _STEP = 0;
 	public String EMPLOYEENOTE;
@@ -48,6 +48,7 @@ public class SaleOrderOnline {
 	public String CompanyTaxNo;
 	public int COUNTMINUTES = 0;
 	public String WEBCAMPAIGN;
+
 
 	public String _WEBMEDIUM;
 
@@ -285,7 +286,7 @@ public class SaleOrderOnline {
 	public long SHIPADDRESSID;
 
 	public int ISGETPROMOTIONSALEORDER;
-	//public EWorking.CRM.CRM.CRMSOONLINEINSTALLMENTINFO INSTALLMENTINFO;
+	// public EWorking.CRM.CRM.CRMSOONLINEINSTALLMENTINFO INSTALLMENTINFO;
 	public String CARTTOKEN;
 
 	public int PayableTypeID;
