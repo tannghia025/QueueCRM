@@ -9,12 +9,18 @@ import org.springframework.kafka.config.TopicBuilder;
 class KafkaTopicConfig {
 
   @Bean
-  public NewTopic topic1() {
-    return TopicBuilder.name("topic-1").build();
+  public NewTopic topicTGDD() {
+    return TopicBuilder.name("TGDD").build();
   }
 
   @Bean
-  public NewTopic topic2() {
-    return TopicBuilder.name("topic-2").build();
+  public NewTopic topicDMX() {
+    return TopicBuilder.name("DMX").build();
   }
+  @Bean
+  public NewTopic topicBHX() {
+    return TopicBuilder.name("BHX").build();
+  }
+
+ 
 }

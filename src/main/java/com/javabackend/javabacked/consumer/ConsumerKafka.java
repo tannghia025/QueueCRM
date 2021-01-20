@@ -5,16 +5,18 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
 
+import com.javabackend.javabacked.model.User;
+
 @Component
 
 public class ConsumerKafka {
 	
 	
-//	@KafkaListener(topics = "topic-1", groupId = "group-id")
-//	@KafkaHandler
-//	public void listen(String message) {
-//		System.out.println("Received Message in group - group-id: " + message);
-//	}
+	@KafkaListener(topics = "BHX", groupId = "group-id", containerFactory="userKafkaListenerContainerFactory")
+	@KafkaHandler
+	public void listen(User user) {
+		System.out.println("Received Message in group - group-id: " + user.password +" username: "+ user.username);
+	}
 
 //	@KafkaListener(topics = "topic-1",groupId="group-id")
 //	@SendTo("topic-2")
