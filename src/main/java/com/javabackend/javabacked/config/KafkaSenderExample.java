@@ -13,7 +13,7 @@ public class KafkaSenderExample {
 	@Autowired
 	private KafkaTemplate<String, String> kafkaTemplate;
 
-	public void send(String topicName, String message) {
+	public void send(String topicName,int patition, String message) {
 		ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topicName, message);
 
 		future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
