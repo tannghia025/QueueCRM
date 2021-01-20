@@ -49,6 +49,7 @@ public class SaleOrderOnline2 {
 	public int COUNTMINUTES = 0;
 	public String WEBCAMPAIGN;
 
+
 	public String _WEBMEDIUM;
 
 	public String WEBMEDIUM;
@@ -285,19 +286,19 @@ public class SaleOrderOnline2 {
 	public long SHIPADDRESSID;
 
 	public int ISGETPROMOTIONSALEORDER;
-	//public EWorking.CRM.CRM.CRMSOONLINEINSTALLMENTINFO INSTALLMENTINFO;
+	// public EWorking.CRM.CRM.CRMSOONLINEINSTALLMENTINFO INSTALLMENTINFO;
 	public String CARTTOKEN;
 
 	public int PayableTypeID;
 
-	public List<MemberPointDetailVV> ListMemberPointDetailVV;
+	public List<MemberPointDetailVV> ListMemberPointDetailVV = null;
 	public int CustomerProvinceID;
 	public int CustomerDistrictID;
 	public String CustomerAddress;
 	public int StorePreview;
 	public String Accessories;
 
-	public LogNotDelivery[] ListLogNotDelivery;
+	public List<LogNotDelivery> ListLogNotDelivery = null;
 
 	public int IsCheckCouponERP;
 	public int OriginateStoreID;
@@ -1322,7 +1323,12 @@ public class SaleOrderOnline2 {
 	public void setAccessories(String accessories) {
 		Accessories = accessories;
 	}
-	
+	public List<LogNotDelivery> getListLogNotDelivery() {
+		return ListLogNotDelivery;
+	}
+	public void setListLogNotDelivery(List<LogNotDelivery> listLogNotDelivery) {
+		ListLogNotDelivery = listLogNotDelivery;
+	}
 	public int getIsCheckCouponERP() {
 		return IsCheckCouponERP;
 	}
@@ -1340,12 +1346,6 @@ public class SaleOrderOnline2 {
 	}
 	public void setDifferenceAmount(int differenceAmount) {
 		DifferenceAmount = differenceAmount;
-	}
-	public LogNotDelivery[] getListLogNotDelivery() {
-		return ListLogNotDelivery;
-	}
-	public void setListLogNotDelivery(LogNotDelivery[] listLogNotDelivery) {
-		ListLogNotDelivery = listLogNotDelivery;
 	}
 	
 	
