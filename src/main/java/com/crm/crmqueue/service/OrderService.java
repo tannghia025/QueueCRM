@@ -11,7 +11,8 @@ import com.google.common.base.Strings;
 public class OrderService implements IOrderService {
 
 	@Override
-	public SaleOrderOnline2 CreateSaleorderOnline(SaleOrderOnline2 objSaleOrderWeb) {
+	public SaleOrderResult CreateSaleorderOnline(SaleOrderOnline2 objSaleOrderWeb) {
+		SaleOrderResult objSaleOrderResult = new SaleOrderResult();
 		// var json = JsonConvert.SerializeObject(objSaleOrderWeb);
 		String keyRedis_phone_program = "Program_" + objSaleOrderWeb.Phone + "_";
 		String keyRedis_programInfo = "GetSaleProgramRedis_";
@@ -37,7 +38,7 @@ public class OrderService implements IOrderService {
 		return null;
 	}
 
-	private void infoCustomer(SaleOrderOnline2 objSaleOrderWeb) {
+	private SaleOrderResult infoCustomer(SaleOrderOnline2 objSaleOrderWeb) {
 		// Chuẩn hóa số Phone
 		objSaleOrderWeb.Phone = objSaleOrderWeb.Phone.trim();
 		objSaleOrderWeb.CONTACTMOBILE = objSaleOrderWeb.CONTACTMOBILE.trim();
@@ -47,26 +48,26 @@ public class OrderService implements IOrderService {
 			objSaleOrderWeb.Phone = "";
 
 		if (Strings.isNullOrEmpty(objSaleOrderWeb.Phone)) {
-			return InitResultErrorLog(LangHelper.GetText(LangConst.Order.CRM_ORDER_INVALIDPHONE, language), json,
-					"Số điện thoại chưa có hoặc không hợp lệ!", objSaleOrderWeb.GENCOMPANYID);
+			return InitResultErrorLog("Số điện thoại chưa có hoặc không hợp lệ!"); // trả về Obect SaleOrderResult
 		}
+
+		// kiểm tra thông tin email
+		if (!Strings.isNullOrEmpty(objSaleOrderWeb.Email)) {
+			objSaleOrderWeb.Email = objSaleOrderWeb.Email.trim().toLowerCase();
+			objSaleOrderWeb.CONTACTEMAIL = objSaleOrderWeb.CONTACTEMAIL.trim().toLowerCase();
+
+			// Kiểm tra Email Hợp lệ
+			if (!Utils.validateEmail(objSaleOrderWeb.Email))
+				objSaleOrderWeb.Email = "";
+		}
+
+		return null;
 	}
 
-	private static SaleOrderResult InitResultErrorLog(String strMess,
-	            String strOrderJson,
-	            String strTitleLog,
-	            int iGenCompanyID,
-	            bool isRollBackCoupon = true)
-	        {
-
-	            // LineMessage.SendMessage(1, "Lỗi tạo đơn hàng: " + strMess + " - " + strOrderJson);
-
-
-	            SaleOrderResult objSaleOrderResult = new SaleOrderResult();
-	            CRM.LogHelper.LogUtility.Current.AddLog("CreateOrder: " + strTitleLog, strOrderJson, "CRM_FunctionGlobals -> CreateSaleOrder_Obect", "CRMWeb.Services");
-	            objSaleOrderResult.SALEORDERONLINEID = -1;
-	            objSaleOrderResult.MESSSAGE = strMess;
-
-	            return objSaleOrderResult;
-	        }
+	private static SaleOrderResult InitResultErrorLog(String strMess) {
+		SaleOrderResult objSaleOrderResult = new SaleOrderResult();
+		objSaleOrderResult.SALEORDERONLINEID = -1;
+		objSaleOrderResult.MESSSAGE = strMess;
+		return objSaleOrderResult;
+	}
 }
