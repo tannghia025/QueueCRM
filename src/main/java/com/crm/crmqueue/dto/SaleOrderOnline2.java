@@ -48,16 +48,12 @@ public class SaleOrderOnline2 {
 	public String CompanyTaxNo;
 	public int COUNTMINUTES = 0;
 	public String WEBCAMPAIGN;
-
 	public String _WEBMEDIUM;
-
 	public String WEBMEDIUM;
 	public String _WEBKEYWORD;
 	public String WEBKEYWORD;
 	private int _Priority = -1;
-
 	public int Priority = -1;
-
 	public int ERPOrderTypeID = 0;
 	private float fDEALPRICE = 0;
 

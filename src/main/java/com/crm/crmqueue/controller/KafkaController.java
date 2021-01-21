@@ -5,6 +5,8 @@ import com.crm.crmqueue.config.KafkaSenderExample;
 import com.crm.crmqueue.dto.LogNotDelivery;
 import com.crm.crmqueue.dto.SaleOrderOnline2;
 import com.crm.crmqueue.model.User;
+import com.crm.crmqueue.service.IOrderService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -18,11 +20,15 @@ public class KafkaController {
 
     @Autowired
     private KafkaSenderExample sender;
+    
+    @Autowired
+    private IOrderService service;
 
     @RequestMapping(value = "/api/pushKafka", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
     public SaleOrderOnline2 sendMessage(@RequestBody SaleOrderOnline2 json) {
-        sender.send("TGDD", 0, "donhang", json);
+    	service.CreateSaleorderOnline(json);
         return json;
+        
     }
 
     @RequestMapping(value = "/api/testUser", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
