@@ -1,8 +1,9 @@
 package com.crm.crmqueue.service;
 
 import com.crm.crmqueue.dto.SaleOrderOnline2;
+import com.crm.crmqueue.dto.SaleOrderResult;
 
 public interface IOrderService {
-	SaleOrderOnline2 CreateSaleorderOnline(SaleOrderOnline2 online);
+	SaleOrderResult CreateSaleorderOnline(SaleOrderOnline2 online);
 
 }
