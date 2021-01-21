@@ -120,10 +120,5 @@ public class SaleOrderResult {
 	public void setIsVipSamsung(boolean isVipSamsung) {
 		IsVipSamsung = isVipSamsung;
 	}
-	
-	
-	
-	
-	
 
 }
