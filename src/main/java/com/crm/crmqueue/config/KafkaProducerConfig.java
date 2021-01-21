@@ -58,6 +58,18 @@ public class KafkaProducerConfig {
 	      new StringDeserializer(),
 	      new JsonDeserializer<>(User.class));
 	  }
+	
+	public ConsumerFactory<String, SaleOrderOnline2> saleOnlineConsumerFactory() {
+	    Map<String, Object> props = new HashMap<>();
+	    props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,  "localhost:9092");
+	    props.put(ConsumerConfig.GROUP_ID_CONFIG, "group-id");
+	    
+	    return new DefaultKafkaConsumerFactory<>(
+	      props,
+	      new StringDeserializer(),
+	      new JsonDeserializer<>(SaleOrderOnline2.class));
+	  }
+
 
 	@Bean
 	public KafkaTemplate<String, SaleOrderOnline2> kafkaTemplate() {
@@ -76,6 +88,14 @@ public class KafkaProducerConfig {
 	    ConcurrentKafkaListenerContainerFactory<String, User> factory =
 	      new ConcurrentKafkaListenerContainerFactory<>();
 	    factory.setConsumerFactory(userConsumerFactory());
+	    return factory;
+	  }
+	 
+	 @Bean
+	  public ConcurrentKafkaListenerContainerFactory<String, SaleOrderOnline2> saleKafkaListenerContainerFactory() {
+	    ConcurrentKafkaListenerContainerFactory<String, SaleOrderOnline2> factory =
+	      new ConcurrentKafkaListenerContainerFactory<>();
+	    factory.setConsumerFactory(saleOnlineConsumerFactory());
 	    return factory;
 	  }
 	
